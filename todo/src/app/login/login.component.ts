@@ -39,14 +39,33 @@ export class LoginComponent implements OnInit {
       data => {
         console.log(data);
         this.router.navigate(['welcome', this.username])
-        this.invalidLogin = false;
+        this.invalidLogin = false
       },
       error => {
         console.log(error);
-        this.invalidLogin = false;
+        this.invalidLogin = true
 
       }
-    )
+    );
+
+    //console.log(this.username)
+    //console.log(this.password)
+  }
+
+  handleJWTAuthLogin() {
+    //if (this.username === "in28minutes" && this.password === 'dummy') {
+    this.basicAuthenticationService.executeJWTAuthenticationService(this.username, this.password).subscribe(
+      data => {
+        console.log(data);
+        this.router.navigate(['welcome', this.username])
+        this.invalidLogin = false
+      },
+      error => {
+        console.log(error);
+        this.invalidLogin = true
+
+      }
+    );
 
     //console.log(this.username)
     //console.log(this.password)
